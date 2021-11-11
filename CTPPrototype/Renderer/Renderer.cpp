@@ -1,5 +1,8 @@
 #include "Renderer.h"
 #include "Utils.h"
+#include "Device.h"
+#include "CommandQueue.h"
+#include "CommandAllocator.h"
 
 Renderer::Renderer()
 {
@@ -22,6 +25,11 @@ void Renderer::Initialize(HWND hwnd)
 	Utils::LoadModel("Models/cinema.obj", model, material);
 
 	D3DShaders::Init_Shader_Compiler(shaderCompiler);
+
+	Device::CreateDevice(d3d);
+
+	CommandQueue::CreateCommandQueue(d3d);
+	CommandAllocator::CreateCommandAllocator(d3d);
 }
 
 void Renderer::Update()

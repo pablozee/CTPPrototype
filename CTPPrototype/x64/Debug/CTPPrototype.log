@@ -1,5 +1,10 @@
 ﻿  Application.cpp
+  CommandAllocator.cpp
+  CommandQueue.cpp
+  D3DShaders.cpp
+  Device.cpp
   Renderer.cpp
+  Utils.cpp
   Window.cpp
   WinMain.cpp
   Generating Code...

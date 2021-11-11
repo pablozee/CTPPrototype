@@ -2,13 +2,14 @@
 
 #include "Common.h"
 
-using Microsoft::WRL::ComPtr;
-
 struct D3D12Global
 {
-	ComPtr<ID3D12Device>	device;
-	ComPtr<IDXGIFactory4>	factory;
-	ComPtr<ID3D12Fence>		fence;
+	IDXGIFactory4*	factory;
+	IDXGIAdapter1*	adapter;
+	ID3D12Device5*	device;
+	ID3D12Fence*	fence;
+	ID3D12CommandQueue* cmdQueue = nullptr;
+	ID3D12CommandAllocator* cmdAlloc[2] = { nullptr, nullptr };
 	
 	int						width;
 	int						height;

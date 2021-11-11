@@ -5,7 +5,6 @@
 #endif
 
 #include <Windows.h>
-#include <wrl.h>
 #include <DirectXMath.h>
 #include <DirectXPackedVector.h>
 
@@ -17,6 +16,9 @@
 
 #include <string>
 #include <vector>
+
+#include "../Renderer/Utils.h"
+#include "DirectXStructures.h"
 
 //--------------------------------------------------------------------------------------
 // Macro Defines
