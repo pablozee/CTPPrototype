@@ -36,6 +36,9 @@
     <ClCompile Include="Renderer\Utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Renderer\D3DShaders.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -71,13 +74,16 @@
     <ClInclude Include="Renderer\DirectXStructures.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer\Common.h">
+    <ClInclude Include="include\Common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Renderer\Utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Renderer\Structures.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\D3DShaders.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

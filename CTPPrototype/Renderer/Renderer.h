@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include "DirectXStructures.h"
 #include "Structures.h"
+#include "D3DShaders.h"
 
 class Renderer
 {
@@ -21,6 +22,7 @@ private:
 	HWND m_Hwnd;
 
 	D3D12Global d3d = {};
+	D3D12ShaderCompilerInfo shaderCompiler;
 
 	Model model;
 	Material material;

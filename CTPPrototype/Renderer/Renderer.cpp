@@ -20,6 +20,8 @@ void Renderer::Initialize(HWND hwnd)
 	d3d.vsync = true;
 
 	Utils::LoadModel("Models/cinema.obj", model, material);
+
+	D3DShaders::Init_Shader_Compiler(shaderCompiler);
 }
 
 void Renderer::Update()

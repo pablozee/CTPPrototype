@@ -2,7 +2,6 @@
 
 #include "Structures.h"
 
-
 namespace Utils
 {
 	void LoadModel(std::string filepath, Model& model, Material& material);
