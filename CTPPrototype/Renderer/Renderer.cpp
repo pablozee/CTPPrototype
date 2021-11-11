@@ -1,4 +1,5 @@
 #include "Renderer.h"
+#include "Utils.h"
 
 Renderer::Renderer()
 {
@@ -17,6 +18,8 @@ void Renderer::Initialize(HWND hwnd)
 	d3d.width = 1280;
 	d3d.height = 960;
 	d3d.vsync = true;
+
+	Utils::LoadModel("Models/cinema.obj", model, material);
 }
 
 void Renderer::Update()

@@ -1,6 +1,7 @@
 #pragma once
 #include <Windows.h>
 #include "DirectXStructures.h"
+#include "Structures.h"
 
 class Renderer
 {
@@ -20,4 +21,7 @@ private:
 	HWND m_Hwnd;
 
 	D3D12Global d3d = {};
+
+	Model model;
+	Material material;
 };

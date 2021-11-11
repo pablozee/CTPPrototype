@@ -1,6 +1,9 @@
 ﻿  Application.cpp
+  GameTimer.cpp
+  Input.cpp
   Renderer.cpp
-  WinMain.cpp
+  Utils.cpp
   Window.cpp
+  WinMain.cpp
   Generating Code...
   CTPPrototype.vcxproj -> C:\dev\CGD\CTP\CTPPrototype\x64\Debug\CTPPrototype.exe

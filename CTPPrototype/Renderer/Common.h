@@ -11,8 +11,8 @@
 
 #include <dxgi1_6.h>
 #include <d3d12.h>
-#include "../thirdparty/dxc/dxcapi.h"
-#include "../thirdparty/dxc/dxcapi.use.h"
+#include <dxc/dxcapi.h>
+#include <dxc/dxcapi.use.h>
 #include "d3dx12.h"
 
 #include <string>
