@@ -1,9 +1,14 @@
 ﻿  Application.cpp
+  BackBufferRTV.cpp
   CommandAllocator.cpp
+  CommandList.cpp
   CommandQueue.cpp
   D3DShaders.cpp
+  DescriptorHeap.cpp
   Device.cpp
+  Fence.cpp
   Renderer.cpp
+  SwapChain.cpp
   Utils.cpp
   Window.cpp
   WinMain.cpp

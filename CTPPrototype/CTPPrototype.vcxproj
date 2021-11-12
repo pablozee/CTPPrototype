@@ -148,11 +148,16 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="GameTimer.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="Renderer\BackBufferRTV.cpp" />
     <ClCompile Include="Renderer\CommandAllocator.cpp" />
+    <ClCompile Include="Renderer\CommandList.cpp" />
     <ClCompile Include="Renderer\CommandQueue.cpp" />
     <ClCompile Include="Renderer\D3DShaders.cpp" />
+    <ClCompile Include="Renderer\DescriptorHeap.cpp" />
     <ClCompile Include="Renderer\Device.cpp" />
+    <ClCompile Include="Renderer\Fence.cpp" />
     <ClCompile Include="Renderer\Renderer.cpp" />
+    <ClCompile Include="Renderer\SwapChain.cpp" />
     <ClCompile Include="Renderer\Utils.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="WinMain.cpp" />
@@ -166,14 +171,19 @@
     <ClInclude Include="GameTimer.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="include\Common.h" />
+    <ClInclude Include="Renderer\BackBufferRTV.h" />
     <ClInclude Include="Renderer\CommandAllocator.h" />
+    <ClInclude Include="Renderer\CommandList.h" />
     <ClInclude Include="Renderer\CommandQueue.h" />
     <ClInclude Include="Renderer\D3DShaders.h" />
     <ClInclude Include="Renderer\d3dx12.h" />
+    <ClInclude Include="Renderer\DescriptorHeap.h" />
     <ClInclude Include="Renderer\Device.h" />
     <ClInclude Include="Renderer\DirectXStructures.h" />
+    <ClInclude Include="Renderer\Fence.h" />
     <ClInclude Include="Renderer\Renderer.h" />
     <ClInclude Include="Renderer\Structures.h" />
+    <ClInclude Include="Renderer\SwapChain.h" />
     <ClInclude Include="Renderer\Utils.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>

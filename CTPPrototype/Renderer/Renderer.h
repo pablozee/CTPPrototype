@@ -22,6 +22,7 @@ private:
 	HWND m_Hwnd;
 
 	D3D12Global d3d = {};
+	D3D12Resources resources = {};
 	D3D12ShaderCompilerInfo shaderCompiler;
 
 	Model model;
