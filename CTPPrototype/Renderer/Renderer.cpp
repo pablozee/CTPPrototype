@@ -8,6 +8,8 @@
 #include "CommandList.h"
 #include "DescriptorHeap.h"
 #include "BackBufferRTV.h"
+#include "VertexBuffer.h"
+#include "IndexBuffer.h"
 
 Renderer::Renderer()
 {
@@ -48,6 +50,9 @@ void Renderer::Initialize(HWND hwnd)
 	DescriptorHeap::CreateDescriptorHeaps(d3d, resources);
 
 	BackBufferRTV::CreateBackBufferRTV(d3d, resources);
+	
+//	VertexBuffer::CreateVertexBuffer(d3d, resources, model);
+//	IndexBuffer::CreateIndexBuffer(d3d, resources, model);
 }
 
 void Renderer::Update()

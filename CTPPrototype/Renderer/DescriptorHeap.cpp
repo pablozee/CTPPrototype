@@ -11,6 +11,7 @@ namespace DescriptorHeap
 
 		HRESULT hr = d3d.device->CreateDescriptorHeap(&rtvDesc, IID_PPV_ARGS(&resources.rtvHeap));
 		Utils::Validate(hr, L"Error: failed to create RTV descriptor heap!");
+
 #if NAME_D3D_RESOURCES
 		resources.rtvHeap->SetName(L"RTV Descriptor Heap");
 #endif

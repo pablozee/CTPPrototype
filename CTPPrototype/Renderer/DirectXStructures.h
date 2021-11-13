@@ -26,6 +26,11 @@ struct D3D12Global
 
 struct D3D12Resources
 {
+	ID3D12Resource*						vertexBuffer = nullptr;
+	D3D12_VERTEX_BUFFER_VIEW			vertexBufferView;
+	ID3D12Resource*						indexBuffer = nullptr;
+	D3D12_INDEX_BUFFER_VIEW				indexBufferView;
+
 	ID3D12DescriptorHeap*				rtvHeap = nullptr;
 	ID3D12DescriptorHeap*				descriptorHeap = nullptr;
 

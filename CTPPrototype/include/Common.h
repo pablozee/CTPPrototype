@@ -12,13 +12,14 @@
 #include <d3d12.h>
 #include <dxc/dxcapi.h>
 #include <dxc/dxcapi.use.h>
-#include "d3dx12.h"
+#include "../Renderer/d3dx12.h"
 
 #include <string>
 #include <vector>
 
+#include "../Renderer/DirectXStructures.h"
+#include "../Renderer/Structures.h"
 #include "../Renderer/Utils.h"
-#include "DirectXStructures.h"
 
 //--------------------------------------------------------------------------------------
 // Macro Defines

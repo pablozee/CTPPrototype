@@ -2,50 +2,33 @@
 
 #include "Common.h"
 
-static bool CompareVector3WithEpsilon(const DirectX::XMFLOAT3& lhs, const DirectX::XMFLOAT3& rhs)
+struct D3D12BufferCreateInfo
 {
-	const DirectX::XMFLOAT3 vector3Epsilon = DirectX::XMFLOAT3(0.00001f, 0.00001f, 0.00001f);
-	return DirectX::XMVector3NearEqual(DirectX::XMLoadFloat3(&lhs), DirectX::XMLoadFloat3(&rhs), DirectX::XMLoadFloat3(&vector3Epsilon)) == TRUE;
-}
+	UINT64 size = 0;
+	UINT64 alignment = 0;
+	D3D12_HEAP_TYPE heapType = D3D12_HEAP_TYPE_DEFAULT;
+	D3D12_RESOURCE_FLAGS flags = D3D12_RESOURCE_FLAG_NONE;
+	D3D12_RESOURCE_STATES state = D3D12_RESOURCE_STATE_COMMON;
 
-static bool CompareVector2WithEpsilon(const DirectX::XMFLOAT2& lhs, const DirectX::XMFLOAT2& rhs)
-{
-	const DirectX::XMFLOAT2 vector2Epsilon = DirectX::XMFLOAT2(0.00001f, 0.00001f);
-	return DirectX::XMVector3NearEqual(DirectX::XMLoadFloat2(&lhs), DirectX::XMLoadFloat2(&rhs), DirectX::XMLoadFloat2(&vector2Epsilon)) == TRUE;
-}
+	D3D12BufferCreateInfo() {}
 
-struct Vertex
-{
-	DirectX::XMFLOAT3 position;
-	DirectX::XMFLOAT2 uv;
+	D3D12BufferCreateInfo(UINT64 InSize, D3D12_RESOURCE_FLAGS InFlags) : size(InSize), flags(InFlags) {}
 
-	bool operator==(const Vertex& v) const
-	{
-		if (CompareVector3WithEpsilon(position, v.position))
-		{
-			if (CompareVector2WithEpsilon(uv, v.uv)) return true;
-			return true;
-		}
-		return false;
-	}
+	D3D12BufferCreateInfo(UINT64 InSize, D3D12_HEAP_TYPE InHeapType, D3D12_RESOURCE_STATES InState) :
+		size(InSize),
+		heapType(InHeapType),
+		state(InState) {}
 
-	Vertex& operator=(const Vertex& v)
-	{
-		position = v.position;
-		uv = v.uv;
-		return *this;
-	}
+	D3D12BufferCreateInfo(UINT64 InSize, D3D12_RESOURCE_FLAGS InFlags, D3D12_RESOURCE_STATES InState) :
+		size(InSize),
+		flags(InFlags),
+		state(InState) {}
+
+	D3D12BufferCreateInfo(UINT64 InSize, UINT64 InAlignment, D3D12_HEAP_TYPE InHeapType, D3D12_RESOURCE_FLAGS InFlags, D3D12_RESOURCE_STATES InState) :
+		size(InSize),
+		alignment(InAlignment),
+		heapType(InHeapType),
+		flags(InFlags),
+		state(InState) {}
 };
 
-struct Material
-{
-	std::string name = "defaultMaterial";
-	std::string texturePath = "";
-	float  textureResolution = 512;
-};
-
-struct Model
-{
-	std::vector<Vertex> vertices;
-	std::vector<uint32_t> indices;
-};

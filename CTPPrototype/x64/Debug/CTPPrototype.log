@@ -1,5 +1,6 @@
 ﻿  Application.cpp
   BackBufferRTV.cpp
+  Buffer.cpp
   CommandAllocator.cpp
   CommandList.cpp
   CommandQueue.cpp
