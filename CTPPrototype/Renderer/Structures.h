@@ -2,6 +2,8 @@
 
 #include "Common.h"
 
+using namespace DirectX;
+
 struct D3D12BufferCreateInfo
 {
 	UINT64 size = 0;
@@ -31,4 +33,5 @@ struct D3D12BufferCreateInfo
 		flags(InFlags),
 		state(InState) {}
 };
+
 

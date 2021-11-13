@@ -153,13 +153,19 @@
     <ClCompile Include="Renderer\CommandAllocator.cpp" />
     <ClCompile Include="Renderer\CommandList.cpp" />
     <ClCompile Include="Renderer\CommandQueue.cpp" />
+    <ClCompile Include="Renderer\ConstantBuffer.cpp" />
     <ClCompile Include="Renderer\D3DShaders.cpp" />
     <ClCompile Include="Renderer\DescriptorHeap.cpp" />
     <ClCompile Include="Renderer\Device.cpp" />
     <ClCompile Include="Renderer\Fence.cpp" />
+    <ClCompile Include="Renderer\IndexBuffer.cpp" />
+    <ClCompile Include="Renderer\MaterialCB.cpp" />
     <ClCompile Include="Renderer\Renderer.cpp" />
     <ClCompile Include="Renderer\SwapChain.cpp" />
+    <ClCompile Include="Renderer\Texture.cpp" />
     <ClCompile Include="Renderer\Utils.cpp" />
+    <ClCompile Include="Renderer\VertexBuffer.cpp" />
+    <ClCompile Include="Renderer\ViewCB.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
@@ -177,16 +183,22 @@
     <ClInclude Include="Renderer\CommandAllocator.h" />
     <ClInclude Include="Renderer\CommandList.h" />
     <ClInclude Include="Renderer\CommandQueue.h" />
+    <ClInclude Include="Renderer\ConstantBuffer.h" />
     <ClInclude Include="Renderer\D3DShaders.h" />
     <ClInclude Include="Renderer\d3dx12.h" />
     <ClInclude Include="Renderer\DescriptorHeap.h" />
     <ClInclude Include="Renderer\Device.h" />
     <ClInclude Include="Renderer\DirectXStructures.h" />
     <ClInclude Include="Renderer\Fence.h" />
+    <ClInclude Include="Renderer\IndexBuffer.h" />
+    <ClInclude Include="Renderer\MaterialCB.h" />
     <ClInclude Include="Renderer\Renderer.h" />
     <ClInclude Include="Renderer\Structures.h" />
     <ClInclude Include="Renderer\SwapChain.h" />
+    <ClInclude Include="Renderer\Texture.h" />
     <ClInclude Include="Renderer\Utils.h" />
+    <ClInclude Include="Renderer\VertexBuffer.h" />
+    <ClInclude Include="Renderer\ViewCB.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

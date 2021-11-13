@@ -50,9 +50,22 @@ struct Model
 	std::vector<uint32_t> indices;
 };
 
+struct TextureInfo
+{
+	std::vector<UINT8> pixels;
+	int width = 0;
+	int height = 0;
+	int stride = 0;
+	int offset = 0;
+};
+
 namespace Utils
 {
 	void LoadModel(std::string filepath, Model& model, Material& material);
 
 	void Validate(HRESULT hr, LPWSTR message);
+
+	void FormatTexture(TextureInfo& info, UINT8* pixels);
+
+	TextureInfo LoadTexture(std::string filepath);
 }

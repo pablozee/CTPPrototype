@@ -1,16 +1,20 @@
 ﻿  Application.cpp
   BackBufferRTV.cpp
   Buffer.cpp
-  CommandAllocator.cpp
   CommandList.cpp
   CommandQueue.cpp
+  ConstantBuffer.cpp
   D3DShaders.cpp
   DescriptorHeap.cpp
-  Device.cpp
   Fence.cpp
+  IndexBuffer.cpp
+  MaterialCB.cpp
   Renderer.cpp
   SwapChain.cpp
+  Texture.cpp
   Utils.cpp
+  VertexBuffer.cpp
+  ViewCB.cpp
   Window.cpp
   WinMain.cpp
   Generating Code...

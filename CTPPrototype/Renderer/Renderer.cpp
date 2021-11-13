@@ -10,6 +10,9 @@
 #include "BackBufferRTV.h"
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
+#include "Texture.h"
+#include "ViewCB.h"
+#include "MaterialCB.h"
 
 Renderer::Renderer()
 {
@@ -51,8 +54,13 @@ void Renderer::Initialize(HWND hwnd)
 
 	BackBufferRTV::CreateBackBufferRTV(d3d, resources);
 	
-//	VertexBuffer::CreateVertexBuffer(d3d, resources, model);
-//	IndexBuffer::CreateIndexBuffer(d3d, resources, model);
+	VertexBuffer::CreateVertexBuffer(d3d, resources, model);
+	IndexBuffer::CreateIndexBuffer(d3d, resources, model);
+
+	Texture::CreateTexture(d3d, resources, material);
+
+	ViewCB::CreateViewCB(d3d, resources);
+	MaterialCB::CreateMaterialCB(d3d, resources, material);
 }
 
 void Renderer::Update()
