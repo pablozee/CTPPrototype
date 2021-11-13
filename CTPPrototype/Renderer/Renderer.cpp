@@ -18,6 +18,8 @@
 #include "DXROutput.h"
 #include "DXRDescriptorHeap.h"
 #include "RayGen.h"
+#include "Miss.h"
+#include "ClosestHit.h"
 
 Renderer::Renderer()
 {
@@ -77,6 +79,8 @@ void Renderer::Initialize(HWND hwnd)
 	DXRDescriptorHeap::CreateDescriptorHeaps(d3d, dxr, resources, model);
 	
 	RayGen::CreateRayGenProgram(d3d, dxr, shaderCompiler);
+	Miss::CreateMissProgram(d3d, dxr, shaderCompiler);
+	ClosestHit::CreateClosestHitProgram(d3d, dxr, shaderCompiler);
 }
 
 void Renderer::Update()

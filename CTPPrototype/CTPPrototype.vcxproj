@@ -151,6 +151,7 @@
     <ClCompile Include="Renderer\BackBufferRTV.cpp" />
     <ClCompile Include="Renderer\BottomLevelAS.cpp" />
     <ClCompile Include="Renderer\Buffer.cpp" />
+    <ClCompile Include="Renderer\ClosestHit.cpp" />
     <ClCompile Include="Renderer\CommandAllocator.cpp" />
     <ClCompile Include="Renderer\CommandList.cpp" />
     <ClCompile Include="Renderer\CommandQueue.cpp" />
@@ -163,6 +164,7 @@
     <ClCompile Include="Renderer\Fence.cpp" />
     <ClCompile Include="Renderer\IndexBuffer.cpp" />
     <ClCompile Include="Renderer\MaterialCB.cpp" />
+    <ClCompile Include="Renderer\Miss.cpp" />
     <ClCompile Include="Renderer\RayGen.cpp" />
     <ClCompile Include="Renderer\Renderer.cpp" />
     <ClCompile Include="Renderer\DXRRootSignature.cpp" />
@@ -187,6 +189,7 @@
     <ClInclude Include="Renderer\BackBufferRTV.h" />
     <ClInclude Include="Renderer\BottomLevelAS.h" />
     <ClInclude Include="Renderer\Buffer.h" />
+    <ClInclude Include="Renderer\ClosestHit.h" />
     <ClInclude Include="Renderer\CommandAllocator.h" />
     <ClInclude Include="Renderer\CommandList.h" />
     <ClInclude Include="Renderer\CommandQueue.h" />
@@ -201,6 +204,7 @@
     <ClInclude Include="Renderer\Fence.h" />
     <ClInclude Include="Renderer\IndexBuffer.h" />
     <ClInclude Include="Renderer\MaterialCB.h" />
+    <ClInclude Include="Renderer\Miss.h" />
     <ClInclude Include="Renderer\RayGen.h" />
     <ClInclude Include="Renderer\Renderer.h" />
     <ClInclude Include="Renderer\DXRRootSignature.h" />
@@ -214,7 +218,35 @@
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="shaders\ClosestHit.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Compute</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Compute</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </FxCompile>
     <FxCompile Include="shaders\Common.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Compute</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Compute</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="shaders\Miss.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0</ShaderModel>

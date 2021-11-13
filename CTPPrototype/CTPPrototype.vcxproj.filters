@@ -102,6 +102,12 @@
     <ClCompile Include="Renderer\DXRRootSignature.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Renderer\Miss.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\ClosestHit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -212,9 +218,17 @@
     <ClInclude Include="Renderer\DXRRootSignature.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Renderer\Miss.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\ClosestHit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shaders\RayGen.hlsl" />
     <FxCompile Include="shaders\Common.hlsl" />
+    <FxCompile Include="shaders\Miss.hlsl" />
+    <FxCompile Include="shaders\ClosestHit.hlsl" />
   </ItemGroup>
 </Project>
