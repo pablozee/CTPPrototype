@@ -15,6 +15,9 @@
 #include "MaterialCB.h"
 #include "BottomLevelAS.h"
 #include "TopLevelAS.h"
+#include "DXROutput.h"
+#include "DXRDescriptorHeap.h"
+#include "RayGen.h"
 
 Renderer::Renderer()
 {
@@ -36,7 +39,7 @@ void Renderer::Initialize(HWND hwnd)
 
 	Utils::LoadModel("Models/cinema.obj", model, material);
 
-	D3DShaders::Init_Shader_Compiler(shaderCompiler);
+	D3DShaders::InitShaderCompiler(shaderCompiler);
 
 	// Initialize D3D12
 	Device::CreateDevice(d3d);
@@ -64,8 +67,16 @@ void Renderer::Initialize(HWND hwnd)
 	ViewCB::CreateViewCB(d3d, resources);
 	MaterialCB::CreateMaterialCB(d3d, resources, material);
 
+
+	// Create DXR Resources
 	BottomLevelAS::CreateBottomLevelAS(d3d, dxr, resources, model);
 	TopLevelAS::CreateTopLevelAS(d3d, dxr, resources);
+
+	DXROutput::CreateDXROutput(d3d, resources);
+
+	DXRDescriptorHeap::CreateDescriptorHeaps(d3d, dxr, resources, model);
+	
+	RayGen::CreateRayGenProgram(d3d, dxr, shaderCompiler);
 }
 
 void Renderer::Update()

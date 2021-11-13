@@ -33,6 +33,13 @@ struct D3D12ShaderInfo
 	}
 };
 
+struct D3D12ShaderCompilerInfo
+{
+	dxc::DxcDllSupport		DxcDllHelper;
+	IDxcCompiler* compiler = nullptr;
+	IDxcLibrary* library = nullptr;
+};
+
 struct AccelerationStructureBuffer
 {
 	ID3D12Resource* pScratch = nullptr;
@@ -130,6 +137,8 @@ struct D3D12Global
 
 struct D3D12Resources
 {
+	ID3D12Resource*						DXROutput;
+
 	ID3D12Resource*						vertexBuffer = nullptr;
 	D3D12_VERTEX_BUFFER_VIEW			vertexBufferView;
 	ID3D12Resource*						indexBuffer = nullptr;

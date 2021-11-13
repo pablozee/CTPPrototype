@@ -2,14 +2,11 @@
 
 #include "Common.h"
 
-struct D3D12ShaderCompilerInfo
-{
-	dxc::DxcDllSupport		DxcDllHelper;
-	IDxcCompiler* compiler = nullptr;
-	IDxcLibrary* library = nullptr;
-};
-
 namespace D3DShaders
 {
-	void Init_Shader_Compiler(D3D12ShaderCompilerInfo& shaderCompiler);
+	void InitShaderCompiler(D3D12ShaderCompilerInfo& shaderCompiler);
+
+	void CompileShader(D3D12ShaderCompilerInfo& compilerInfo, RtProgram& program);
+
+	void CompileShader(D3D12ShaderCompilerInfo& compilerInfo, D3D12ShaderInfo& info, IDxcBlob** blob);
 }
