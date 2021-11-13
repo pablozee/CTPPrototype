@@ -23,6 +23,7 @@ private:
 
 	D3D12Global d3d = {};
 	D3D12Resources resources = {};
+	DXRGlobal dxr = {};
 	D3D12ShaderCompilerInfo shaderCompiler;
 
 	Model model;

@@ -1,5 +1,6 @@
 ﻿  Application.cpp
   BackBufferRTV.cpp
+  BottomLevelAS.cpp
   Buffer.cpp
   CommandList.cpp
   CommandQueue.cpp
@@ -12,10 +13,13 @@
   Renderer.cpp
   SwapChain.cpp
   Texture.cpp
+  TopLevelAS.cpp
   Utils.cpp
   VertexBuffer.cpp
   ViewCB.cpp
   Window.cpp
+  Generating Code...
+  Compiling...
   WinMain.cpp
   Generating Code...
   CTPPrototype.vcxproj -> C:\dev\CGD\CTP\CTPPrototype\x64\Debug\CTPPrototype.exe

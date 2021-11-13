@@ -149,6 +149,7 @@
     <ClCompile Include="GameTimer.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Renderer\BackBufferRTV.cpp" />
+    <ClCompile Include="Renderer\BottomLevelAS.cpp" />
     <ClCompile Include="Renderer\Buffer.cpp" />
     <ClCompile Include="Renderer\CommandAllocator.cpp" />
     <ClCompile Include="Renderer\CommandList.cpp" />
@@ -163,6 +164,7 @@
     <ClCompile Include="Renderer\Renderer.cpp" />
     <ClCompile Include="Renderer\SwapChain.cpp" />
     <ClCompile Include="Renderer\Texture.cpp" />
+    <ClCompile Include="Renderer\TopLevelAS.cpp" />
     <ClCompile Include="Renderer\Utils.cpp" />
     <ClCompile Include="Renderer\VertexBuffer.cpp" />
     <ClCompile Include="Renderer\ViewCB.cpp" />
@@ -179,6 +181,7 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="include\Common.h" />
     <ClInclude Include="Renderer\BackBufferRTV.h" />
+    <ClInclude Include="Renderer\BottomLevelAS.h" />
     <ClInclude Include="Renderer\Buffer.h" />
     <ClInclude Include="Renderer\CommandAllocator.h" />
     <ClInclude Include="Renderer\CommandList.h" />
@@ -196,6 +199,7 @@
     <ClInclude Include="Renderer\Structures.h" />
     <ClInclude Include="Renderer\SwapChain.h" />
     <ClInclude Include="Renderer\Texture.h" />
+    <ClInclude Include="Renderer\TopLevelAS.h" />
     <ClInclude Include="Renderer\Utils.h" />
     <ClInclude Include="Renderer\VertexBuffer.h" />
     <ClInclude Include="Renderer\ViewCB.h" />

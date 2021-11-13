@@ -13,6 +13,8 @@
 #include "Texture.h"
 #include "ViewCB.h"
 #include "MaterialCB.h"
+#include "BottomLevelAS.h"
+#include "TopLevelAS.h"
 
 Renderer::Renderer()
 {
@@ -61,6 +63,9 @@ void Renderer::Initialize(HWND hwnd)
 
 	ViewCB::CreateViewCB(d3d, resources);
 	MaterialCB::CreateMaterialCB(d3d, resources, material);
+
+	BottomLevelAS::CreateBottomLevelAS(d3d, dxr, resources, model);
+	TopLevelAS::CreateTopLevelAS(d3d, dxr, resources);
 }
 
 void Renderer::Update()
