@@ -5,4 +5,6 @@
 namespace SwapChain
 {
 	void CreateSwapChain(D3D12Global& d3d, HWND& hwnd);
+
+	void Present(D3D12Global& d3d);
 }

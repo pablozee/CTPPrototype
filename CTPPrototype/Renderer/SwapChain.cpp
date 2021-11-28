@@ -25,6 +25,15 @@ namespace SwapChain
 
 		SAFE_RELEASE(swapChain);
 		d3d.frameIndex = d3d.swapChain->GetCurrentBackBufferIndex();
+	}
 
+	void Present(D3D12Global& d3d)
+	{
+		HRESULT hr = d3d.swapChain->Present(d3d.vsync, 0);
+		if (FAILED(hr))
+		{
+			hr = d3d.device->GetDeviceRemovedReason();
+			Utils::Validate(hr, L"Error: failed to present!");
+		}
 	}
 }

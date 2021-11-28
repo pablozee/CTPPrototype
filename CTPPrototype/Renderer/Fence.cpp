@@ -37,4 +37,26 @@ namespace Fence
 		d3d.fenceValues[d3d.frameIndex]++;
 	}
 
+	void MoveToNextFrame(D3D12Global& d3d)
+	{
+		// Schedule a Signal command in the queue
+		const UINT64 currentFenceValue = d3d.fenceValues[d3d.frameIndex];
+		HRESULT hr = d3d.cmdQueue->Signal(d3d.fence, currentFenceValue);
+		Utils::Validate(hr, L"Error: failed to signal command queue!");
+
+		// Update the frame index
+		d3d.frameIndex = d3d.swapChain->GetCurrentBackBufferIndex();
+
+		// If the next frame is not ready to be rendered yet, wait until it is
+		if (d3d.fence->GetCompletedValue() < d3d.fenceValues[d3d.frameIndex])
+		{
+			hr = d3d.fence->SetEventOnCompletion(d3d.fenceValues[d3d.frameIndex], d3d.fenceEvent);
+			Utils::Validate(hr, L"Error: failed to set fence value!");
+
+			WaitForSingleObjectEx(d3d.fenceEvent, INFINITE, FALSE);
+		}
+
+		// Set the fence value for the next frame
+		d3d.fenceValues[d3d.frameIndex] = currentFenceValue + 1;
+	}
 }

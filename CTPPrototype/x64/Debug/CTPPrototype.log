@@ -1,6 +1,7 @@
-﻿  Fence.cpp
-  PSO.cpp
+﻿  Application.cpp
+  CommandList.cpp
+  CommandQueue.cpp
   Renderer.cpp
-  ShaderTable.cpp
+  Window.cpp
   Generating Code...
   CTPPrototype.vcxproj -> C:\dev\CGD\CTP\CTPPrototype\x64\Debug\CTPPrototype.exe

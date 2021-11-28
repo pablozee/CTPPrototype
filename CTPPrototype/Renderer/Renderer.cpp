@@ -88,6 +88,7 @@ void Renderer::Initialize(HWND hwnd)
 	
 	ShaderTable::CreateShaderTable(d3d, dxr, resources);
 
+	// Close and execute command list
 	d3d.cmdList->Close();
 	ID3D12CommandList* pGraphicsList = { d3d.cmdList };
 	d3d.cmdQueue->ExecuteCommandLists(1, &pGraphicsList);
@@ -99,12 +100,18 @@ void Renderer::Initialize(HWND hwnd)
 
 void Renderer::Update()
 {
-
+	ViewCB::UpdateViewCB(d3d, resources);
 }
 
 void Renderer::Draw()
 {
-
+	CommandList::BuildCommandList(d3d, dxr, resources);
+	
+	SwapChain::Present(d3d);
+	
+	Fence::MoveToNextFrame(d3d);
+	
+	CommandList::ResetCommandList(d3d);
 }
 
 void Renderer::Shutdown()
