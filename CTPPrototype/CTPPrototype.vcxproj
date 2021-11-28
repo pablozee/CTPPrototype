@@ -165,9 +165,11 @@
     <ClCompile Include="Renderer\IndexBuffer.cpp" />
     <ClCompile Include="Renderer\MaterialCB.cpp" />
     <ClCompile Include="Renderer\Miss.cpp" />
+    <ClCompile Include="Renderer\PSO.cpp" />
     <ClCompile Include="Renderer\RayGen.cpp" />
     <ClCompile Include="Renderer\Renderer.cpp" />
     <ClCompile Include="Renderer\DXRRootSignature.cpp" />
+    <ClCompile Include="Renderer\ShaderTable.cpp" />
     <ClCompile Include="Renderer\SwapChain.cpp" />
     <ClCompile Include="Renderer\Texture.cpp" />
     <ClCompile Include="Renderer\TopLevelAS.cpp" />
@@ -205,9 +207,11 @@
     <ClInclude Include="Renderer\IndexBuffer.h" />
     <ClInclude Include="Renderer\MaterialCB.h" />
     <ClInclude Include="Renderer\Miss.h" />
+    <ClInclude Include="Renderer\PSO.h" />
     <ClInclude Include="Renderer\RayGen.h" />
     <ClInclude Include="Renderer\Renderer.h" />
     <ClInclude Include="Renderer\DXRRootSignature.h" />
+    <ClInclude Include="Renderer\ShaderTable.h" />
     <ClInclude Include="Renderer\Structures.h" />
     <ClInclude Include="Renderer\SwapChain.h" />
     <ClInclude Include="Renderer\Texture.h" />

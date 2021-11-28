@@ -5,4 +5,6 @@
 namespace Fence
 {
 	void CreateFence(D3D12Global& d3d);
+
+	void WaitForGPU(D3D12Global& d3d);
 }

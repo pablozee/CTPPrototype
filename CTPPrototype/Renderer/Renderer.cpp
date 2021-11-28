@@ -20,6 +20,8 @@
 #include "RayGen.h"
 #include "Miss.h"
 #include "ClosestHit.h"
+#include "PSO.h"
+#include "ShaderTable.h"
 
 Renderer::Renderer()
 {
@@ -81,6 +83,18 @@ void Renderer::Initialize(HWND hwnd)
 	RayGen::CreateRayGenProgram(d3d, dxr, shaderCompiler);
 	Miss::CreateMissProgram(d3d, dxr, shaderCompiler);
 	ClosestHit::CreateClosestHitProgram(d3d, dxr, shaderCompiler);
+
+	PSO::CreatePipelineStateObject(d3d, dxr);
+	
+	ShaderTable::CreateShaderTable(d3d, dxr, resources);
+
+	d3d.cmdList->Close();
+	ID3D12CommandList* pGraphicsList = { d3d.cmdList };
+	d3d.cmdQueue->ExecuteCommandLists(1, &pGraphicsList);
+
+	Fence::WaitForGPU(d3d);
+
+	CommandList::ResetCommandList(d3d);
 }
 
 void Renderer::Update()

@@ -1,5 +1,6 @@
-﻿  ClosestHit.cpp
-  Miss.cpp
+﻿  Fence.cpp
+  PSO.cpp
   Renderer.cpp
+  ShaderTable.cpp
   Generating Code...
   CTPPrototype.vcxproj -> C:\dev\CGD\CTP\CTPPrototype\x64\Debug\CTPPrototype.exe
