@@ -7,7 +7,7 @@ void ClosestHit(inout HitInfo payload, Attributes attrib)
 	float3 barycentrics = float3((1.0f - attrib.uv.x - attrib.uv.y), attrib.uv.x, attrib.uv.y);
 	VertexAttributes vertex = GetVertexAttributes(triangleIndex, barycentrics);
 	
-	float3 color = vertex.normal;
+	float3 color = Materials[vertex.materialIndex].diffuse;
 
 	/*
 	if (MaterialCB[0].useTex == 1)

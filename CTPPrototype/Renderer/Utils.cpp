@@ -64,14 +64,18 @@ namespace Utils
 		// Get the first material
 		// Only support a single material right now
 
-		Material material;
-		mats.reserve(1);
-		material.name = materials[0].name;
-		material.texturePath = materials[0].diffuse_texname;
-		material.diffuse = XMFLOAT3(materials[0].diffuse[0], materials[0].diffuse[1], materials[0].diffuse[2]);
-		material.useTex = 0;
+		mats.reserve(materials.size());
 
-		mats.push_back(material);
+		for (int i = 0; i < materials.size(); i++)
+		{
+			Material material;
+			material.name = materials[i].name;
+			material.texturePath = materials[i].diffuse_texname;
+			material.diffuse = XMFLOAT3(materials[i].diffuse[0], materials[i].diffuse[1], materials[i].diffuse[2]);
+			material.useTex = 0;
+			mats.push_back(material);
+		}
+
 
 		// Parse the model and store the unique vertices
 		unordered_map<Vertex, uint32_t> uniqueVertices = {};
@@ -95,10 +99,12 @@ namespace Utils
 
 				vertex.normal =
 				{
-					attrib.normals[3 * index.vertex_index + 2],
-					attrib.normals[3 * index.vertex_index + 1],
-					attrib.normals[3 * index.vertex_index + 0]
+					attrib.normals[3 * index.normal_index + 2],
+					attrib.normals[3 * index.normal_index + 1],
+					attrib.normals[3 * index.normal_index + 0]
 				};
+
+				vertex.materialIndex = 1;
 
 				// Fast find unique vertices using a hash
 				if (uniqueVertices.count(vertex) == 0)

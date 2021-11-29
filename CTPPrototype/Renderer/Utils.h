@@ -19,6 +19,7 @@ struct Vertex
 	DirectX::XMFLOAT3 position;
 	DirectX::XMFLOAT2 uv;
 	DirectX::XMFLOAT3 normal;
+	float materialIndex;
 
 	bool operator==(const Vertex& v) const
 	{

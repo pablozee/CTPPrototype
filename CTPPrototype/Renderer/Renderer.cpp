@@ -41,7 +41,7 @@ void Renderer::Initialize(HWND hwnd)
 	d3d.height = 960;
 	d3d.vsync = true;
 
-	Utils::LoadModel("Models/cinema.obj", model, materials);
+	Utils::LoadModel("Models/PortalSceneJoined.obj", model, materials);
 
 	D3DShaders::InitShaderCompiler(shaderCompiler);
 
