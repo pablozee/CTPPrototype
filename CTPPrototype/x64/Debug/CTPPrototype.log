@@ -1,7 +1,2 @@
-﻿  Application.cpp
-  CommandList.cpp
-  CommandQueue.cpp
-  Renderer.cpp
-  Window.cpp
-  Generating Code...
+﻿  Utils.cpp
   CTPPrototype.vcxproj -> C:\dev\CGD\CTP\CTPPrototype\x64\Debug\CTPPrototype.exe

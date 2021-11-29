@@ -12,6 +12,8 @@ struct ViewConstantBuffer
 struct MaterialConstantBuffer
 {
 	DirectX::XMFLOAT4 resolution;
+	DirectX::XMFLOAT3 diffuse;
+	int				  useTex;
 };
 
 struct D3D12ShaderInfo
@@ -161,10 +163,10 @@ struct D3D12Resources
 
 	UINT								rtvDescSize = 0;
 
-	float											translationOffset = 0;
-	float											rotationOffset = 0;
-	DirectX::XMFLOAT3								eyeAngle;
-	DirectX::XMFLOAT3								eyePosition;
+	float								translationOffset = 0;
+	float								rotationOffset = 0;
+	DirectX::XMFLOAT3					eyeAngle;
+	DirectX::XMFLOAT3					eyePosition;
 };
 
 struct DXRGlobal

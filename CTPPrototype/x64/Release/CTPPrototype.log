@@ -1,0 +1,39 @@
+﻿  Application.cpp
+  GameTimer.cpp
+  Input.cpp
+  BackBufferRTV.cpp
+  BottomLevelAS.cpp
+  Buffer.cpp
+  ClosestHit.cpp
+  CommandAllocator.cpp
+  CommandList.cpp
+  CommandQueue.cpp
+  ConstantBuffer.cpp
+  D3DShaders.cpp
+  DescriptorHeap.cpp
+  Device.cpp
+  DXRDescriptorHeap.cpp
+  DXROutput.cpp
+  Fence.cpp
+  IndexBuffer.cpp
+  MaterialCB.cpp
+  Miss.cpp
+  Compiling...
+  PSO.cpp
+  RayGen.cpp
+  Renderer.cpp
+  DXRRootSignature.cpp
+  ShaderTable.cpp
+  SwapChain.cpp
+  Texture.cpp
+  TopLevelAS.cpp
+  Utils.cpp
+  VertexBuffer.cpp
+  ViewCB.cpp
+  Window.cpp
+  WinMain.cpp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 2422 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  CTPPrototype.vcxproj -> C:\dev\CGD\CTP\CTPPrototype\x64\Release\CTPPrototype.exe

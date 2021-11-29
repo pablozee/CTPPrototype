@@ -61,11 +61,12 @@ namespace Utils
 		{
 			throw std::runtime_error(err);
 		}
-
 		// Get the first material
 		// Only support a single material right now
 		material.name = materials[0].name;
 		material.texturePath = materials[0].diffuse_texname;
+		material.diffuse = XMFLOAT3(materials[0].diffuse[0], materials[0].diffuse[1], materials[0].diffuse[2]);
+		material.useTex = 0;
 
 		// Parse the model and store the unique vertices
 		unordered_map<Vertex, uint32_t> uniqueVertices = {};
@@ -87,6 +88,13 @@ namespace Utils
 					1 - attrib.texcoords[2 * index.texcoord_index + 1]
 				};
 
+				vertex.normal =
+				{
+					attrib.normals[3 * index.vertex_index + 2],
+					attrib.normals[3 * index.vertex_index + 1],
+					attrib.normals[3 * index.vertex_index + 0]
+				};
+
 				// Fast find unique vertices using a hash
 				if (uniqueVertices.count(vertex) == 0)
 				{
@@ -94,6 +102,13 @@ namespace Utils
 					model.vertices.push_back(vertex);
 				}
 
+				// TODO Create mesh inside model and push back vertices and indices to mesh
+				// Also create a material for each mesh and add this to a vector of materials
+				// create a blas for each mesh and assign instance id to use in shader
+				// NEW TODO
+				// Create a mesh per triangle. Set material index from vector of materials for each tri mesh
+				// Put material index on vertex. retrieve using primitive index. index into constant buffer
+				// of materials with material index
 				model.indices.push_back(uniqueVertices[vertex]);
 			}
 		}
