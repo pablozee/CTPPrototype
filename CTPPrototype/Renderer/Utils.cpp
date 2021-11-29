@@ -111,7 +111,7 @@ namespace Utils
 					};
 
 
-					vertex.materialIndex = shapes[s].mesh.material_ids[f];
+					vertex.materialIndex = float(shapes[s].mesh.material_ids[f]);
 
 					if (uniqueVertices.count(vertex) == 0)
 					{

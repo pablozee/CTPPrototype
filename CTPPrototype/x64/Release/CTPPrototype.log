@@ -26,13 +26,18 @@
   Texture.cpp
   TopLevelAS.cpp
   Utils.cpp
+C:\dev\CGD\CTP\CTPPrototype\CTPPrototype\Renderer\Utils.cpp(114,58): warning C4244: '=': conversion from '_Ty' to 'float', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
   VertexBuffer.cpp
   ViewCB.cpp
   WinMain.cpp
   Window.cpp
   Generating code
-  141 of 2485 functions ( 5.7%) were compiled, the rest were copied from previous compilation.
-    68 functions were new in current compilation
-    154 functions had inline decision re-evaluated but remain unchanged
+  146 of 2370 functions ( 6.2%) were compiled, the rest were copied from previous compilation.
+    56 functions were new in current compilation
+    143 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   CTPPrototype.vcxproj -> C:\dev\CGD\CTP\CTPPrototype\x64\Release\CTPPrototype.exe
