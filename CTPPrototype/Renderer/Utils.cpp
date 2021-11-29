@@ -104,7 +104,7 @@ namespace Utils
 					attrib.normals[3 * index.normal_index + 0]
 				};
 
-				vertex.materialIndex = 1;
+				vertex.materialIndex = 0.0f;
 
 				// Fast find unique vertices using a hash
 				if (uniqueVertices.count(vertex) == 0)
