@@ -9,11 +9,16 @@ struct ViewConstantBuffer
 	DirectX::XMFLOAT2 resolution = DirectX::XMFLOAT2(1280, 720);
 };
 
-struct MaterialConstantBuffer
+struct MatCB
 {
 	DirectX::XMFLOAT4 resolution;
 	DirectX::XMFLOAT3 diffuse;
 	int				  useTex;
+};
+
+struct MaterialConstantBuffer
+{
+	std::vector<MatCB> materials;
 };
 
 struct D3D12ShaderInfo
@@ -150,9 +155,7 @@ struct D3D12Resources
 	ViewConstantBuffer					viewCBData;
 	UINT8*								viewCBStart = nullptr;
 
-	ID3D12Resource*						materialCB = nullptr;
-	MaterialConstantBuffer				materialCBData;
-	UINT8*								materialCBStart = nullptr;
+	ID3D12Resource*						materialBuffer = nullptr;
 
 	ID3D12DescriptorHeap*				rtvHeap = nullptr;
 	ID3D12DescriptorHeap*				descriptorHeap = nullptr;

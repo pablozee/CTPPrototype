@@ -2,7 +2,7 @@
 
 namespace DXRDescriptorHeap
 {
-	void CreateDescriptorHeaps(D3D12Global& d3d, DXRGlobal& dxr, D3D12Resources& resources, const Model& model)
+	void CreateDescriptorHeaps(D3D12Global& d3d, DXRGlobal& dxr, D3D12Resources& resources, const Model& model, const std::vector<Material>& materials)
 	{
 		// Describe the CBV/SRV/UAV heap
 		// Need 7 entries:
@@ -25,6 +25,7 @@ namespace DXRDescriptorHeap
 		// Get the descriptor heap handle and increment size
 		D3D12_CPU_DESCRIPTOR_HANDLE handle = resources.descriptorHeap->GetCPUDescriptorHandleForHeapStart();
 		UINT handleIncrement = d3d.device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+
 #if NAME_D3D_RESOURCES
 		resources.descriptorHeap->SetName(L"DXR Descriptor Heap");
 #endif
@@ -34,13 +35,6 @@ namespace DXRDescriptorHeap
 		cbvDesc.SizeInBytes = ALIGN(D3D12_CONSTANT_BUFFER_DATA_PLACEMENT_ALIGNMENT, sizeof(resources.viewCBData));
 		cbvDesc.BufferLocation = resources.viewCB->GetGPUVirtualAddress();
 
-		d3d.device->CreateConstantBufferView(&cbvDesc, handle);
-
-		// Create the MaterialCB CBV
-		cbvDesc.SizeInBytes = ALIGN(D3D12_CONSTANT_BUFFER_DATA_PLACEMENT_ALIGNMENT, sizeof(resources.materialCBData));
-		cbvDesc.BufferLocation = resources.materialCB->GetGPUVirtualAddress();
-
-		handle.ptr += handleIncrement;
 		d3d.device->CreateConstantBufferView(&cbvDesc, handle);
 
 		// Create the DXR output buffer UAV
@@ -85,6 +79,19 @@ namespace DXRDescriptorHeap
 
 		handle.ptr += handleIncrement;
 		d3d.device->CreateShaderResourceView(resources.vertexBuffer, &vertexSRVDesc, handle);
+		
+		D3D12_SHADER_RESOURCE_VIEW_DESC materialSRVDesc;
+		materialSRVDesc.ViewDimension = D3D12_SRV_DIMENSION_BUFFER;
+		materialSRVDesc.Format = DXGI_FORMAT_UNKNOWN;
+		materialSRVDesc.Buffer.Flags = D3D12_BUFFER_SRV_FLAG_NONE;
+		materialSRVDesc.Buffer.StructureByteStride = sizeof(MatCB);
+		materialSRVDesc.Buffer.FirstElement = 0;
+		materialSRVDesc.Buffer.NumElements = (static_cast<UINT>(materials.size()));
+		materialSRVDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
+
+		handle.ptr += handleIncrement;
+		d3d.device->CreateShaderResourceView(resources.materialBuffer, &materialSRVDesc, handle);
+
 
 		// Create the material texture SRV
 		D3D12_SHADER_RESOURCE_VIEW_DESC textureSRVDesc = {};

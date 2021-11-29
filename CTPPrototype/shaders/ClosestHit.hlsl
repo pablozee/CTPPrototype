@@ -9,11 +9,13 @@ void ClosestHit(inout HitInfo payload, Attributes attrib)
 	
 	float3 color = vertex.normal;
 
-	if (useTex == 1)
+	/*
+	if (MaterialCB[0].useTex == 1)
 	{
-		int2 coord = floor(vertex.uv * textureResolution.x);
+		int2 coord = floor(vertex.uv * MaterialCB[0].textureResolution.x);
 		float3 color = albedo.Load(int3(coord, 0)).rgb;
 	}
+	*/
 
 	payload.ShadedColorAndHitT = float4(color, RayTCurrent());
 }

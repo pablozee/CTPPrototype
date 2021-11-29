@@ -14,7 +14,7 @@ namespace RayGen
 		D3D12_DESCRIPTOR_RANGE ranges[3];
 
 		ranges[0].BaseShaderRegister = 0;
-		ranges[0].NumDescriptors = 2;
+		ranges[0].NumDescriptors = 1;
 		ranges[0].RegisterSpace = 0;
 		ranges[0].RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_CBV;
 		ranges[0].OffsetInDescriptorsFromTableStart = 0;
@@ -23,13 +23,13 @@ namespace RayGen
 		ranges[1].NumDescriptors = 1;
 		ranges[1].RegisterSpace = 0;
 		ranges[1].RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_UAV;
-		ranges[1].OffsetInDescriptorsFromTableStart = 2;
+		ranges[1].OffsetInDescriptorsFromTableStart = 1;
 
 		ranges[2].BaseShaderRegister = 0;
-		ranges[2].NumDescriptors = 4;
+		ranges[2].NumDescriptors = 5;
 		ranges[2].RegisterSpace = 0;
 		ranges[2].RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_SRV;
-		ranges[2].OffsetInDescriptorsFromTableStart = 3;
+		ranges[2].OffsetInDescriptorsFromTableStart = 2;
 
 		D3D12_ROOT_PARAMETER param0 = {};
 		param0.ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;

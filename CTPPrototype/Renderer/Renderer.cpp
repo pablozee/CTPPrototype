@@ -41,7 +41,7 @@ void Renderer::Initialize(HWND hwnd)
 	d3d.height = 960;
 	d3d.vsync = true;
 
-	Utils::LoadModel("Models/cinema.obj", model, material);
+	Utils::LoadModel("Models/cinema.obj", model, materials);
 
 	D3DShaders::InitShaderCompiler(shaderCompiler);
 
@@ -66,10 +66,10 @@ void Renderer::Initialize(HWND hwnd)
 	VertexBuffer::CreateVertexBuffer(d3d, resources, model);
 	IndexBuffer::CreateIndexBuffer(d3d, resources, model);
 
-	Texture::CreateTexture(d3d, resources, material);
+//	Texture::CreateTexture(d3d, resources, materials[0]);
 
 	ViewCB::CreateViewCB(d3d, resources);
-	MaterialCB::CreateMaterialCB(d3d, resources, material);
+	MaterialCB::CreateMaterialCB(d3d, resources, materials);
 
 
 	// Create DXR Resources
@@ -78,7 +78,7 @@ void Renderer::Initialize(HWND hwnd)
 
 	DXROutput::CreateDXROutput(d3d, resources);
 
-	DXRDescriptorHeap::CreateDescriptorHeaps(d3d, dxr, resources, model);
+	DXRDescriptorHeap::CreateDescriptorHeaps(d3d, dxr, resources, model, materials);
 	
 	RayGen::CreateRayGenProgram(d3d, dxr, shaderCompiler);
 	Miss::CreateMissProgram(d3d, dxr, shaderCompiler);

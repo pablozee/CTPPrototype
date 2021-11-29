@@ -27,5 +27,5 @@ private:
 	D3D12ShaderCompilerInfo shaderCompiler;
 
 	Model model;
-	Material material;
+	std::vector<Material> materials;
 };

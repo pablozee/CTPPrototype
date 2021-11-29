@@ -8,6 +8,12 @@ struct Attributes
 	float2 uv;
 };
 
+struct Material 
+{
+	float4 textureResolution;
+	float3 diffuse;
+	int useTex;
+};
 // Constant Buffers
 
 cbuffer ViewCB : register(b0)
@@ -17,12 +23,7 @@ cbuffer ViewCB : register(b0)
 	float2 resolution;
 };
 
-cbuffer MaterialCB : register(b1)
-{
-	float4 textureResolution;
-	float3 diffuse;
-	int useTex;
-};
+
 
 // Resources
 
@@ -31,6 +32,7 @@ RaytracingAccelerationStructure SceneBVH : register(t0);
 
 ByteAddressBuffer indices					: register(t1);
 ByteAddressBuffer vertices					: register(t2);
+StructuredBuffer<Material> MaterialCB		: register(t3);
 Texture2D<float4> albedo					: register(t3);
 
 // Helper Functions

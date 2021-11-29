@@ -49,7 +49,7 @@ namespace Utils
 		}
 	}
 
-	void LoadModel(string filepath, Model& model, Material& material)
+	void LoadModel(string filepath, Model& model, std::vector<Material>& mats)
 	{
 		tinyobj::attrib_t attrib;
 		std::vector<tinyobj::shape_t> shapes;
@@ -63,10 +63,15 @@ namespace Utils
 		}
 		// Get the first material
 		// Only support a single material right now
+
+		Material material;
+		mats.reserve(1);
 		material.name = materials[0].name;
 		material.texturePath = materials[0].diffuse_texname;
 		material.diffuse = XMFLOAT3(materials[0].diffuse[0], materials[0].diffuse[1], materials[0].diffuse[2]);
 		material.useTex = 0;
+
+		mats.push_back(material);
 
 		// Parse the model and store the unique vertices
 		unordered_map<Vertex, uint32_t> uniqueVertices = {};
