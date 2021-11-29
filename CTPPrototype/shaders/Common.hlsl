@@ -63,7 +63,7 @@ VertexAttributes GetVertexAttributes(uint triangleIndex, float3 barycentrics)
 
 	for (uint i = 0; i < 3; i++)
 	{
-		int address = (indices[i] * 5) * 4;
+		int address = (indices[i] * 9) * 4;
 		v.position += asfloat(vertices.Load3(address)) * barycentrics[i];
 		address += (3 * 4);
 		v.uv += asfloat(vertices.Load2(address)) * barycentrics[i];

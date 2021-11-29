@@ -76,7 +76,56 @@ namespace Utils
 			mats.push_back(material);
 		}
 
+		unordered_map<Vertex, uint32_t> uniqueVertices = {};
 
+		for (size_t s = 0; s < shapes.size(); s++) {
+			// Loop over faces(polygon)
+			size_t index_offset = 0;
+			for (size_t f = 0; f < shapes[s].mesh.num_face_vertices.size(); f++) {
+				size_t fv = size_t(shapes[s].mesh.num_face_vertices[f]);
+
+				// Loop over vertices in the face.
+				for (size_t v = 0; v < fv; v++) {
+					// access to vertex
+					Vertex vertex = {};
+					tinyobj::index_t idx = shapes[s].mesh.indices[index_offset + v];
+
+					vertex.position =
+					{
+					 attrib.vertices[3 * size_t(idx.vertex_index) + 0],
+					 attrib.vertices[3 * size_t(idx.vertex_index) + 1],
+					 attrib.vertices[3 * size_t(idx.vertex_index) + 2]
+					};
+
+					vertex.uv =
+					{
+						attrib.texcoords[2 * size_t(idx.texcoord_index) + 0],
+						attrib.texcoords[2 * size_t(idx.texcoord_index) + 1]
+					};
+
+					vertex.normal =
+					{
+						attrib.normals[3 * size_t(idx.normal_index) + 0],
+						attrib.normals[3 * size_t(idx.normal_index) + 1],
+						attrib.normals[3 * size_t(idx.normal_index) + 2]
+					};
+
+
+					vertex.materialIndex = shapes[s].mesh.material_ids[f];
+
+					if (uniqueVertices.count(vertex) == 0)
+					{
+						uniqueVertices[vertex] = static_cast<uint32_t>(model.vertices.size());
+						model.vertices.push_back(vertex);
+					}
+
+					model.indices.push_back(uniqueVertices[vertex]);
+				}
+				index_offset += fv;
+			}
+		}
+
+		/*
 		// Parse the model and store the unique vertices
 		unordered_map<Vertex, uint32_t> uniqueVertices = {};
 		for (const auto& shape : shapes)
@@ -104,6 +153,9 @@ namespace Utils
 					attrib.normals[3 * index.normal_index + 0]
 				};
 
+				
+
+
 				vertex.materialIndex = 0.0f;
 
 				// Fast find unique vertices using a hash
@@ -123,6 +175,7 @@ namespace Utils
 				model.indices.push_back(uniqueVertices[vertex]);
 			}
 		}
+		*/
 	}
 
 	void FormatTexture(TextureInfo& info, UINT8* pixels)
