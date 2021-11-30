@@ -26,6 +26,6 @@ private:
 	DXRGlobal dxr = {};
 	D3D12ShaderCompilerInfo shaderCompiler;
 
-	Model model;
+	std::vector<Model> models;
 	std::vector<Material> materials;
 };

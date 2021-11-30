@@ -4,5 +4,5 @@
 
 namespace VertexBuffer
 {
-	void CreateVertexBuffer(D3D12Global& d3d, D3D12Resources& resources, Model& model);
+	void CreateVertexBuffer(D3D12Global& d3d, D3D12Resources& resources, std::vector<Model>& modelsVec);
 }

@@ -2,7 +2,7 @@
 
 namespace DXRDescriptorHeap
 {
-	void CreateDescriptorHeaps(D3D12Global& d3d, DXRGlobal& dxr, D3D12Resources& resources, const Model& model, const std::vector<Material>& materials)
+	void CreateDescriptorHeaps(D3D12Global& d3d, DXRGlobal& dxr, D3D12Resources& resources, const std::vector<Model>& modelsVec, const std::vector<Material>& materials)
 	{
 		// Describe the CBV/SRV/UAV heap
 		// Need 7 entries:
@@ -54,6 +54,13 @@ namespace DXRDescriptorHeap
 		handle.ptr += handleIncrement;
 		d3d.device->CreateShaderResourceView(nullptr, &srvDesc, handle);
 
+		size_t modelsIndicesSize = 0;
+
+		for (int i = 0; i < modelsVec.size(); i++)
+		{
+			modelsIndicesSize += modelsVec[i].vertices.size();
+		}
+
 		// Create the index buffer SRV
 		D3D12_SHADER_RESOURCE_VIEW_DESC indexSRVDesc;
 		indexSRVDesc.ViewDimension = D3D12_SRV_DIMENSION_BUFFER;
@@ -61,11 +68,18 @@ namespace DXRDescriptorHeap
 		indexSRVDesc.Buffer.Flags = D3D12_BUFFER_SRV_FLAG_RAW;
 		indexSRVDesc.Buffer.StructureByteStride = 0;
 		indexSRVDesc.Buffer.FirstElement = 0;
-		indexSRVDesc.Buffer.NumElements = (static_cast<UINT>(model.indices.size()) * sizeof(UINT)) / sizeof(float);
+		indexSRVDesc.Buffer.NumElements = (static_cast<UINT>(modelsIndicesSize) * sizeof(UINT)) / sizeof(float);
 		indexSRVDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
 
 		handle.ptr += handleIncrement;
 		d3d.device->CreateShaderResourceView(resources.indexBuffer, &indexSRVDesc, handle);
+
+		size_t modelsVerticesSize = 0;
+
+		for (int i = 0; i < modelsVec.size(); i++)
+		{
+			modelsVerticesSize += modelsVec[i].vertices.size();
+		}
 
 		// Create the vertex buffer SRV
 		D3D12_SHADER_RESOURCE_VIEW_DESC vertexSRVDesc;
@@ -74,7 +88,7 @@ namespace DXRDescriptorHeap
 		vertexSRVDesc.Buffer.Flags = D3D12_BUFFER_SRV_FLAG_RAW;
 		vertexSRVDesc.Buffer.StructureByteStride = 0;
 		vertexSRVDesc.Buffer.FirstElement = 0;
-		vertexSRVDesc.Buffer.NumElements = (static_cast<UINT>(model.vertices.size()) * sizeof(Vertex)) / sizeof(float);
+		vertexSRVDesc.Buffer.NumElements = (static_cast<UINT>(modelsVerticesSize) * sizeof(Vertex)) / sizeof(float);
 		vertexSRVDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
 
 		handle.ptr += handleIncrement;

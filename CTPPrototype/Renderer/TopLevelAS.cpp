@@ -3,7 +3,7 @@
 
 namespace TopLevelAS
 {
-	void CreateTopLevelAS(D3D12Global& d3d, DXRGlobal& dxr, D3D12Resources& resources)
+	void CreateTopLevelAS(D3D12Global& d3d, DXRGlobal& dxr, D3D12Resources& resources, std::vector<Model>& modelsVec)
 	{
 		// Describe the TLAS geometry instance(s)
 		D3D12_RAYTRACING_INSTANCE_DESC instanceDesc = {};
@@ -39,7 +39,7 @@ namespace TopLevelAS
 		ASInputs.Type = D3D12_RAYTRACING_ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL;
 		ASInputs.DescsLayout = D3D12_ELEMENTS_LAYOUT_ARRAY;
 		ASInputs.InstanceDescs = dxr.TLAS.pInstanceDesc->GetGPUVirtualAddress();
-		ASInputs.NumDescs = 1;
+		ASInputs.NumDescs = modelsVec.size();
 		ASInputs.Flags = buildFlags;
 
 		D3D12_RAYTRACING_ACCELERATION_STRUCTURE_PREBUILD_INFO ASPreBuildInfo = {};

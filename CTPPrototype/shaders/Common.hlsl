@@ -33,7 +33,7 @@ RaytracingAccelerationStructure SceneBVH : register(t0);
 ByteAddressBuffer indices					: register(t1);
 ByteAddressBuffer vertices					: register(t2);
 StructuredBuffer<Material> Materials		: register(t3);
-Texture2D<float4> albedo					: register(t3);
+Texture2D<float4> albedo					: register(t4);
 
 // Helper Functions
 

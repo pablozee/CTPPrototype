@@ -41,7 +41,8 @@ void Renderer::Initialize(HWND hwnd)
 	d3d.height = 960;
 	d3d.vsync = true;
 
-	Utils::LoadModel("Models/PortalSceneJoined.obj", model, materials);
+	Utils::LoadModel("Models/PortalSceneJoined.obj", models, materials);
+	Utils::LoadModel("Models/Cube.obj", models, materials);
 
 	D3DShaders::InitShaderCompiler(shaderCompiler);
 
@@ -63,8 +64,8 @@ void Renderer::Initialize(HWND hwnd)
 
 	BackBufferRTV::CreateBackBufferRTV(d3d, resources);
 	
-	VertexBuffer::CreateVertexBuffer(d3d, resources, model);
-	IndexBuffer::CreateIndexBuffer(d3d, resources, model);
+	VertexBuffer::CreateVertexBuffer(d3d, resources, models);
+	IndexBuffer::CreateIndexBuffer(d3d, resources, models);
 
 //	Texture::CreateTexture(d3d, resources, materials[0]);
 
@@ -73,12 +74,12 @@ void Renderer::Initialize(HWND hwnd)
 
 
 	// Create DXR Resources
-	BottomLevelAS::CreateBottomLevelAS(d3d, dxr, resources, model);
-	TopLevelAS::CreateTopLevelAS(d3d, dxr, resources);
+	BottomLevelAS::CreateBottomLevelAS(d3d, dxr, resources, models);
+	TopLevelAS::CreateTopLevelAS(d3d, dxr, resources, models);
 
 	DXROutput::CreateDXROutput(d3d, resources);
 
-	DXRDescriptorHeap::CreateDescriptorHeaps(d3d, dxr, resources, model, materials);
+	DXRDescriptorHeap::CreateDescriptorHeaps(d3d, dxr, resources, models, materials);
 	
 	RayGen::CreateRayGenProgram(d3d, dxr, shaderCompiler);
 	Miss::CreateMissProgram(d3d, dxr, shaderCompiler);

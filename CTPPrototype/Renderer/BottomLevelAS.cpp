@@ -1,22 +1,71 @@
 #include "BottomLevelAS.h"
 #include "Buffer.h"
 
+/*
+std::vector<D3D12_RAYTRACING_GEOMETRY_DESC> geometryDesc;
+geometryDesc.reserve(3);
+
+geometryDesc[0].Type = D3D12_RAYTRACING_GEOMETRY_TYPE_TRIANGLES;
+geometryDesc[0].Triangles.VertexBuffer.StartAddress = m_D3DResources.vertexBuffer->GetGPUVirtualAddress();
+geometryDesc[0].Triangles.VertexBuffer.StrideInBytes = m_D3DResources.vertexBufferView.StrideInBytes;
+geometryDesc[0].Triangles.VertexCount = static_cast<uint32_t>(m_Model.vertices.size());
+geometryDesc[0].Triangles.VertexFormat = DXGI_FORMAT_R32G32B32_FLOAT;
+geometryDesc[0].Triangles.IndexBuffer = m_D3DResources.indexBuffer->GetGPUVirtualAddress();
+geometryDesc[0].Triangles.IndexCount = static_cast<uint32_t>(m_Model.indices.size());
+geometryDesc[0].Triangles.IndexFormat = m_D3DResources.indexBufferView.Format;
+geometryDesc[0].Triangles.Transform3x4 = 0;
+geometryDesc[0].Flags = D3D12_RAYTRACING_GEOMETRY_FLAG_OPAQUE;
+
+geometryDesc[1].Type = D3D12_RAYTRACING_GEOMETRY_TYPE_TRIANGLES;
+geometryDesc[1].Triangles.VertexBuffer.StartAddress = m_D3DResources.vertexBuffer->GetGPUVirtualAddress() + m_Model.vertices.size() * sizeof(Vertex);
+geometryDesc[1].Triangles.VertexBuffer.StrideInBytes = m_D3DResources.vertexBufferView.StrideInBytes;
+geometryDesc[1].Triangles.VertexCount = static_cast<uint32_t>(m_Model2.vertices.size());
+geometryDesc[1].Triangles.VertexFormat = DXGI_FORMAT_R32G32B32_FLOAT;
+geometryDesc[1].Triangles.IndexBuffer = m_D3DResources.indexBuffer->GetGPUVirtualAddress() + m_Model.indices.size() * sizeof(uint32_t);
+geometryDesc[1].Triangles.IndexCount = static_cast<uint32_t>(m_Model2.indices.size());
+geometryDesc[1].Triangles.IndexFormat = m_D3DResources.indexBufferView.Format;
+geometryDesc[1].Triangles.Transform3x4 = 0;
+geometryDesc[1].Flags = D3D12_RAYTRACING_GEOMETRY_FLAG_OPAQUE;
+
+*/
 namespace BottomLevelAS
 {
-	void CreateBottomLevelAS(D3D12Global& d3d, DXRGlobal& dxr, D3D12Resources& resources, Model& model)
+	void CreateBottomLevelAS(D3D12Global& d3d, DXRGlobal& dxr, D3D12Resources& resources, std::vector<Model> modelsVec)
 	{
 		// Describe the geometry that goes in the bottom acceleration structure(s)
-		D3D12_RAYTRACING_GEOMETRY_DESC geometryDesc;
-		geometryDesc.Type = D3D12_RAYTRACING_GEOMETRY_TYPE_TRIANGLES;
-		geometryDesc.Triangles.VertexBuffer.StartAddress = resources.vertexBuffer->GetGPUVirtualAddress();
-		geometryDesc.Triangles.VertexBuffer.StrideInBytes = resources.vertexBufferView.StrideInBytes;
-		geometryDesc.Triangles.VertexCount = static_cast<UINT>(model.vertices.size());
-		geometryDesc.Triangles.VertexFormat = DXGI_FORMAT_R32G32B32_FLOAT;
-		geometryDesc.Triangles.IndexBuffer = resources.indexBuffer->GetGPUVirtualAddress();
-		geometryDesc.Triangles.IndexFormat = resources.indexBufferView.Format;
-		geometryDesc.Triangles.IndexCount = static_cast<UINT>(model.indices.size());
-		geometryDesc.Triangles.Transform3x4 = 0;
-		geometryDesc.Flags = D3D12_RAYTRACING_GEOMETRY_FLAG_OPAQUE;
+		std::vector<D3D12_RAYTRACING_GEOMETRY_DESC> geometryDescriptions = {};
+		geometryDescriptions.reserve(modelsVec.size());
+
+		D3D12_GPU_VIRTUAL_ADDRESS vertexBufferAddress = resources.vertexBuffer->GetGPUVirtualAddress();
+		D3D12_GPU_VIRTUAL_ADDRESS indexBufferAddress = resources.indexBuffer->GetGPUVirtualAddress();
+
+
+		
+		for (int i = 0; i < modelsVec.size(); i++)
+		{
+			D3D12_RAYTRACING_GEOMETRY_DESC geometryDesc;
+			
+			geometryDesc.Type = D3D12_RAYTRACING_GEOMETRY_TYPE_TRIANGLES;
+			geometryDesc.Triangles.VertexBuffer.StartAddress = vertexBufferAddress;
+			geometryDesc.Triangles.VertexBuffer.StrideInBytes = resources.vertexBufferView.StrideInBytes;
+			geometryDesc.Triangles.VertexCount = static_cast<UINT>(modelsVec[i].vertices.size());
+			geometryDesc.Triangles.VertexFormat = DXGI_FORMAT_R32G32B32_FLOAT;
+			geometryDesc.Triangles.IndexBuffer = indexBufferAddress;
+			geometryDesc.Triangles.IndexFormat = resources.indexBufferView.Format;
+			geometryDesc.Triangles.IndexCount = static_cast<UINT>(modelsVec[i].indices.size());
+			geometryDesc.Triangles.Transform3x4 = 0;
+			geometryDesc.Flags = D3D12_RAYTRACING_GEOMETRY_FLAG_OPAQUE;
+
+			geometryDescriptions.push_back(geometryDesc);
+
+			vertexBufferAddress += modelsVec[i].vertices.size() * sizeof(Vertex);
+			indexBufferAddress += modelsVec[i].indices.size() * sizeof(uint32_t);
+
+		}
+
+	
+
+		
 
 		D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS buildFlags = D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAG_PREFER_FAST_TRACE;
 
@@ -24,8 +73,8 @@ namespace BottomLevelAS
 		D3D12_BUILD_RAYTRACING_ACCELERATION_STRUCTURE_INPUTS ASInputs = {};
 		ASInputs.Type = D3D12_RAYTRACING_ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL;
 		ASInputs.DescsLayout = D3D12_ELEMENTS_LAYOUT_ARRAY;
-		ASInputs.pGeometryDescs = &geometryDesc;
-		ASInputs.NumDescs = 1;
+		ASInputs.pGeometryDescs = geometryDescriptions.data();
+		ASInputs.NumDescs = geometryDescriptions.size();
 		ASInputs.Flags = buildFlags;
 
 		D3D12_RAYTRACING_ACCELERATION_STRUCTURE_PREBUILD_INFO ASPreBuildInfo = {};

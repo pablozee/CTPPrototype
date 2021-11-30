@@ -49,12 +49,16 @@ namespace Utils
 		}
 	}
 
-	void LoadModel(string filepath, Model& model, std::vector<Material>& mats)
+	void LoadModel(string filepath, std::vector<Model>& modelsVec, std::vector<Material>& mats)
 	{
 		tinyobj::attrib_t attrib;
 		std::vector<tinyobj::shape_t> shapes;
 		std::vector<tinyobj::material_t> materials;
 		std::string err;
+
+		Model model;
+		modelsVec.reserve(modelsVec.size() + 1);
+
 
 		// Load the OBJ and MTL files
 		if (!tinyobj::LoadObj(&attrib, &shapes, &materials, &err, filepath.c_str(), "materials\\"))
@@ -125,57 +129,7 @@ namespace Utils
 			}
 		}
 
-		/*
-		// Parse the model and store the unique vertices
-		unordered_map<Vertex, uint32_t> uniqueVertices = {};
-		for (const auto& shape : shapes)
-		{
-			for (const auto& index : shape.mesh.indices)
-			{
-				Vertex vertex = {};
-				vertex.position =
-				{
-					attrib.vertices[3 * index.vertex_index + 2],
-					attrib.vertices[3 * index.vertex_index + 1],
-					attrib.vertices[3 * index.vertex_index + 0]
-				};
-
-				vertex.uv =
-				{
-					attrib.texcoords[2 * index.texcoord_index + 0],
-					1 - attrib.texcoords[2 * index.texcoord_index + 1]
-				};
-
-				vertex.normal =
-				{
-					attrib.normals[3 * index.normal_index + 2],
-					attrib.normals[3 * index.normal_index + 1],
-					attrib.normals[3 * index.normal_index + 0]
-				};
-
-				
-
-
-				vertex.materialIndex = 0.0f;
-
-				// Fast find unique vertices using a hash
-				if (uniqueVertices.count(vertex) == 0)
-				{
-					uniqueVertices[vertex] = static_cast<uint32_t>(model.vertices.size());
-					model.vertices.push_back(vertex);
-				}
-
-				// TODO Create mesh inside model and push back vertices and indices to mesh
-				// Also create a material for each mesh and add this to a vector of materials
-				// create a blas for each mesh and assign instance id to use in shader
-				// NEW TODO
-				// Create a mesh per triangle. Set material index from vector of materials for each tri mesh
-				// Put material index on vertex. retrieve using primitive index. index into constant buffer
-				// of materials with material index
-				model.indices.push_back(uniqueVertices[vertex]);
-			}
-		}
-		*/
+		modelsVec.push_back(model);
 	}
 
 	void FormatTexture(TextureInfo& info, UINT8* pixels)

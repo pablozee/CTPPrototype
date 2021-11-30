@@ -4,5 +4,5 @@
 
 namespace DXRDescriptorHeap
 {
-	void CreateDescriptorHeaps(D3D12Global& d3d, DXRGlobal& dxr, D3D12Resources& resources, const Model& model, const std::vector<Material>& materials);
+	void CreateDescriptorHeaps(D3D12Global& d3d, DXRGlobal& dxr, D3D12Resources& resources, const std::vector<Model>& modelsVec, const std::vector<Material>& materials);
 }
