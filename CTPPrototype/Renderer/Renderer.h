@@ -28,4 +28,5 @@ private:
 
 	std::vector<Model> models;
 	std::vector<Material> materials;
+	int materialOffset = 0;
 };

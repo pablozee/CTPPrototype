@@ -58,7 +58,7 @@ namespace DXRDescriptorHeap
 
 		for (int i = 0; i < modelsVec.size(); i++)
 		{
-			modelsIndicesSize += modelsVec[i].vertices.size();
+			modelsIndicesSize += modelsVec[i].indices.size();
 		}
 
 		// Create the index buffer SRV
@@ -68,7 +68,7 @@ namespace DXRDescriptorHeap
 		indexSRVDesc.Buffer.Flags = D3D12_BUFFER_SRV_FLAG_RAW;
 		indexSRVDesc.Buffer.StructureByteStride = 0;
 		indexSRVDesc.Buffer.FirstElement = 0;
-		indexSRVDesc.Buffer.NumElements = (static_cast<UINT>(modelsIndicesSize) * sizeof(UINT)) / sizeof(float);
+		indexSRVDesc.Buffer.NumElements = (static_cast<UINT>(modelsIndicesSize) * sizeof(uint32_t)) / sizeof(float);
 		indexSRVDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
 
 		handle.ptr += handleIncrement;

@@ -41,8 +41,8 @@ void Renderer::Initialize(HWND hwnd)
 	d3d.height = 960;
 	d3d.vsync = true;
 
-	Utils::LoadModel("Models/PortalSceneJoined.obj", models, materials);
-	Utils::LoadModel("Models/Cube.obj", models, materials);
+	Utils::LoadModel("Models/PortalSceneJoined.obj", models, materials, materialOffset);
+	Utils::LoadModel("Models/Cube.obj", models, materials, materialOffset);
 
 	D3DShaders::InitShaderCompiler(shaderCompiler);
 

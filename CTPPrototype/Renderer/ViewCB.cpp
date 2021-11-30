@@ -40,7 +40,7 @@ namespace ViewCB
 		focus = XMFLOAT3(0.f, 1.75f, 0.f);
 #endif
 	
-		eye = XMFLOAT3(x, y + 2, z + 5);
+		eye = XMFLOAT3(x, y + 3, z + 10);
 		up = XMFLOAT3(0.f, 1.f, 0.f);
 
 		aspect = (float)d3d.width / (float)d3d.height;

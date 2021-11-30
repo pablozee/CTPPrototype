@@ -66,7 +66,7 @@ struct TextureInfo
 
 namespace Utils
 {
-	void LoadModel(std::string filepath, std::vector<Model>& modelsVec, std::vector<Material>& mats);
+	void LoadModel(std::string filepath, std::vector<Model>& modelsVec, std::vector<Material>& mats, int& materialOffset);
 
 	void Validate(HRESULT hr, LPWSTR message);
 

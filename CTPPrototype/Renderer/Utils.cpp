@@ -49,7 +49,7 @@ namespace Utils
 		}
 	}
 
-	void LoadModel(string filepath, std::vector<Model>& modelsVec, std::vector<Material>& mats)
+	void LoadModel(string filepath, std::vector<Model>& modelsVec, std::vector<Material>& mats, int& materialOffset)
 	{
 		tinyobj::attrib_t attrib;
 		std::vector<tinyobj::shape_t> shapes;
@@ -70,6 +70,8 @@ namespace Utils
 
 		mats.reserve(materials.size());
 
+		int newMaterialOffset = 0;
+
 		for (int i = 0; i < materials.size(); i++)
 		{
 			Material material;
@@ -78,6 +80,8 @@ namespace Utils
 			material.diffuse = XMFLOAT3(materials[i].diffuse[0], materials[i].diffuse[1], materials[i].diffuse[2]);
 			material.useTex = 0;
 			mats.push_back(material);
+
+			newMaterialOffset++;
 		}
 
 		unordered_map<Vertex, uint32_t> uniqueVertices = {};
@@ -115,7 +119,7 @@ namespace Utils
 					};
 
 
-					vertex.materialIndex = float(shapes[s].mesh.material_ids[f]);
+					vertex.materialIndex = float(materialOffset) + float(shapes[s].mesh.material_ids[f]);
 
 					if (uniqueVertices.count(vertex) == 0)
 					{
@@ -129,6 +133,7 @@ namespace Utils
 			}
 		}
 
+		materialOffset += newMaterialOffset;
 		modelsVec.push_back(model);
 	}
 
