@@ -59,7 +59,7 @@ VertexAttributes GetVertexAttributes(uint triangleIndex, float3 barycentrics)
 	v.position = float3(0, 0, 0);
 	v.uv = float2(0, 0);
 	v.normal = float3(0, 0, 0);
-	v.materialIndex = 2.0f;
+	v.materialIndex = 0.0f;
 
 	for (uint i = 0; i < 3; i++)
 	{

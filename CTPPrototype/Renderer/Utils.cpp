@@ -31,6 +31,12 @@ namespace std
 			hash_combine(seed, hasher(vertex.uv.x));
 			hash_combine(seed, hasher(vertex.uv.y));
 
+			hash_combine(seed, hasher(vertex.normal.x));
+			hash_combine(seed, hasher(vertex.normal.y));
+			hash_combine(seed, hasher(vertex.normal.z));
+
+			hash_combine(seed, hasher(vertex.materialIndex));
+
 			return seed;
 		}
 	};
@@ -70,7 +76,7 @@ namespace Utils
 
 		mats.reserve(materials.size());
 
-		int newMaterialOffset = 0;
+		int oldMaterialOffset = materialOffset;
 
 		for (int i = 0; i < materials.size(); i++)
 		{
@@ -81,7 +87,7 @@ namespace Utils
 			material.useTex = 0;
 			mats.push_back(material);
 
-			newMaterialOffset++;
+			materialOffset++;
 		}
 
 		unordered_map<Vertex, uint32_t> uniqueVertices = {};
@@ -119,7 +125,9 @@ namespace Utils
 					};
 
 
-					vertex.materialIndex = float(materialOffset) + float(shapes[s].mesh.material_ids[f]);
+					vertex.materialIndex = float(oldMaterialOffset) + float(shapes[s].mesh.material_ids[f]);
+			//		vertex.materialIndex = float(shapes[s].mesh.material_ids[f]);
+			//		vertex.materialIndex = oldMaterialOffset;
 
 					if (uniqueVertices.count(vertex) == 0)
 					{
@@ -133,7 +141,7 @@ namespace Utils
 			}
 		}
 
-		materialOffset += newMaterialOffset;
+	//	materialOffset += newMaterialOffset;
 		modelsVec.push_back(model);
 	}
 

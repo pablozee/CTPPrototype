@@ -9,6 +9,7 @@ void ClosestHit(inout HitInfo payload, Attributes attrib)
 	
 	float3 color = Materials[int(vertex.materialIndex)].diffuse;
 //	float3 color = vertex.materialIndex;
+//	float3 color = vertex.normal;
 
 	/*
 	if (MaterialCB[0].useTex == 1)

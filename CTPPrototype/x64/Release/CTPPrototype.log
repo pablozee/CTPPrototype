@@ -2,7 +2,6 @@
   BackBufferRTV.cpp
   BottomLevelAS.cpp
   Buffer.cpp
-  ClosestHit.cpp
   CommandAllocator.cpp
   CommandList.cpp
   CommandQueue.cpp
@@ -18,8 +17,8 @@
   MaterialCB.cpp
   Miss.cpp
   PSO.cpp
-  Compiling...
   RayGen.cpp
+  Compiling...
   Renderer.cpp
   ShaderTable.cpp
   SwapChain.cpp
@@ -31,8 +30,8 @@
   WinMain.cpp
   Window.cpp
   Generating code
-  4 of 2370 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+  6 of 2553 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    2 functions had inline decision re-evaluated but remain unchanged
+    4 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   CTPPrototype.vcxproj -> C:\dev\CGD\CTP\CTPPrototype\x64\Release\CTPPrototype.exe

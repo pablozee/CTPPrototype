@@ -36,6 +36,7 @@ struct Vertex
 		position = v.position;
 		uv = v.uv;
 		normal = v.normal;
+		materialIndex = v.materialIndex;
 		return *this;
 	}
 };
